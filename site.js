@@ -1,15 +1,3 @@
-function leftPadOnce(n) {
-    return n<10 ? '0'+n : n;
-}
-
-function reformatDateString(dateString) {
-    let date = new Date(dateString);
-    let day = leftPadOnce(date.getDate());
-    let month = leftPadOnce(date.getMonth() + 1);
-    let year = date.getFullYear();
-    return year + "-" + month + "-" + day;
-}
-
 //  Extremely basic datatable implementation, just some simple searching and sorting
 basicDataTable = function (data) {
 return {
