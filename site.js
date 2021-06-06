@@ -17,10 +17,19 @@ return {
             this.columnsSorted[column] = true;
         }
 
-        if (this.columnsSorted[column]) {
-            this.data.sort((a, b) => (a[column] > b[column]) ? 1 : -1);
-        } else {
-            this.data.sort((a, b) => (a[column] > b[column]) ? -1 : 1);
+        if(column === 'Strike') {
+            if (this.columnsSorted[column]) {
+                this.data.sort((a, b) => (Number(a[column].substring(1)) > Number(b[column].substring(1))) ? 1 : -1);
+            } else {
+                this.data.sort((a, b) => (Number(a[column].substring(1)) > Number(b[column].substring(1))) ? -1 : 1);
+            }
+        }
+        else {
+            if (this.columnsSorted[column]) {
+                this.data.sort((a, b) => (a[column] > b[column]) ? 1 : -1);
+            } else {
+                this.data.sort((a, b) => (a[column] > b[column]) ? -1 : 1);
+            }
         }
 
         this.columnsSorted[column] = !this.columnsSorted[column];
@@ -42,4 +51,4 @@ return {
     }
 }
 ciosTable = basicDataTable(window.buildSpecificData.cios);
-ciosTable.sort('Code');
+ciosTable.columnsSorted['Code'] = false;
